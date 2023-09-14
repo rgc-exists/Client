@@ -1,0 +1,7 @@
+{
+    "name": "obj_wws_manager",
+    "file": "obj_wws_manager_Networking.gml",
+    "type": "Other",
+    "subtype": "AsyncNetworking",
+    "hasSubtype": true
+}

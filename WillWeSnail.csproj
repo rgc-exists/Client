@@ -16,4 +16,14 @@
   <ItemGroup>
     <Folder Include="gmlCode\" />
   </ItemGroup>
+  <Target Name="DeleteCode" BeforeTargets="BeforeBuild">
+    <RemoveDir Directories="$(TargetDir)/gmlCode" />
+  </Target>
+  <Target Name="CopyCode" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <Assets Include="gmlCode/**/*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Assets)" DestinationFolder="$(TargetDir)/gmlCode/%(RecursiveDir)" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="directories.json" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="false" />
+  </Target>
 </Project>
