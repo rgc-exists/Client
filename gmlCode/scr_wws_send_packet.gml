@@ -1,5 +1,5 @@
 var data = argument0;     // Buffer containing the packet data
-var sid = argument1;       // Either socket or steam id to send the data to
+var sid = argument1;      // Either socket or steam id to send the data to
 var reliable = argument2; // Is the packet reliable
 var packet = argument3;   // Packet struct
 
