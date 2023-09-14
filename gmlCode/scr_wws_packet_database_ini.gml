@@ -1,3 +1,13 @@
+/*
+{
+    id      // uint16 with the id of the packet
+    name    // internal name for the packet 
+    types   // ds_list of buffer types for the data of the packet
+    handler // function to be called with the read data when this packet is recived
+    builder // function to be called to build a new packet of this type (may get removed in favor of an automatic build system)
+}
+*/
+
 global.wws_packet_database = ds_map_create();
 
 var packet = modhelper_create_struct();

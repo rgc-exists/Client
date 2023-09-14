@@ -1,4 +1,4 @@
-if (global.wws_networking_steam)
+if (global.wws_networking_is_steam)
 {
 
 }
