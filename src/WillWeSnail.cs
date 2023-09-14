@@ -98,6 +98,18 @@ public class WillWeSnail
                 .ReplaceGmlSafe(File.ReadAllText(Path.Combine(Path.GetDirectoryName(file), objCode.file)), data);
         };
         FileHandlers.Add("object_code", loadObjectCode);
+        
+        Action<string, string> loadCodeHook = (code, file) =>
+        {
+            data.HookCode(Path.GetFileNameWithoutExtension(file), code);
+        };
+        FileHandlers.Add("code_hooks", loadCodeHook);
+
+        Action<string, string> loadFunctionHook = (code, file) =>
+        {
+            data.HookFunction(Path.GetFileNameWithoutExtension(file), code);
+        };
+        FileHandlers.Add("function_hooks", loadFunctionHook);
     }
     
     private static Type? FindType(string qualifiedTypeName)
