@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>WillWeSnail\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UndertaleModLib, Culture=neutral, PublicKeyToken=null">
+      <HintPath>.\UndertaleModLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="gmlCode\" />
+  </ItemGroup>
+</Project>
