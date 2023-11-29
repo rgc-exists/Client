@@ -1,6 +1,6 @@
 {
     "gmlCode": "functions",
-    "gmlCode/builders": "functions",
     "gmlCode/handlers": "functions",
-    "gmlCode/manager": "object_code"
+    "gmlCode/manager": "object_code",
+    "gmlCode/codeHooks": "code_hooks"
 }

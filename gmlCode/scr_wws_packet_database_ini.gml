@@ -1,19 +1,31 @@
 /*
 {
-    id      // uint16 with the id of the packet
+    pid     // uint16 with the id of the packet
     name    // internal name for the packet 
     types   // array of buffer types for the data of the packet
     handler // function to be called with the read data when this packet is recived
-    builder // function to be called to build a new packet of this type (may get removed in favor of an automatic build system)
 }
 */
 
 global.wws_packet_database = ds_map_create();
+global.wws_packets_by_id = ds_map_create();
 
 var packet = modhelper_create_struct();
-variable_struct_set(packet, "id", 0);
-variable_struct_set(packet, "name", "Player Join");
-variable_struct_set(packet, "types", [buffer_u8, buffer_string]);
-variable_struct_set(packet, "handler", scr_wws_player_join_handler);
-variable_struct_set(packet, "builder", scr_wws_player_join_builder);
-ds_map_add(global.wws_packet_database, variable_struct_get(packet, "id"), packet);
+packet.pid = 0;
+packet.name = "PlayerJoin";
+packet.types = [buffer_s8, buffer_string];
+packet.handler = asset_get_index("scr_wws_player_join_handler");
+ds_map_add(global.wws_packet_database, packet.name, packet);
+
+// TODO: Add a hookable function for modders
+
+var key = ds_map_find_first(global.wws_packet_database);
+packet = ds_map_find_value(global.wws_packet_database, key);
+ds_map_add(global.wws_packets_by_id, packet.pid, packet);
+
+for (var i = 0; i < ds_map_size(global.wws_packet_database) - 1; i++)
+{
+    key = ds_map_find_next(global.wws_packet_database, key);
+    packet = ds_map_find_value(global.wws_packet_database, key);
+    ds_map_add(global.wws_packets_by_id, packet.pid, packet);
+}

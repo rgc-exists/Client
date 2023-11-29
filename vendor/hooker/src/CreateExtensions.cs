@@ -63,7 +63,7 @@ public static class CreateExtensions {
         UndertaleCode globalCode = CreateCode(data, codeName, out locals);
         globalCode.ArgumentsCount = argCount;
 
-        globalCode.ReplaceGmlSafe(code, data);
+        globalCode.ReplaceGML(code, data);
 
         UndertaleScript script = new() {
             Name = scriptName,
@@ -144,7 +144,7 @@ public static class CreateExtensions {
 
         List<UndertaleInstruction> oldCode = new(code.Instructions);
         ObservableCollection<UndertaleCodeLocals.LocalVar> oldLocals = new(locals.Locals);
-        code.ReplaceGmlSafe(gmlCode, data);
+        code.ReplaceGML(gmlCode, data);
         function.LocalsCount = code.LocalsCount;
         code.Replace(Assembler.Assemble(@$"
 b [func_def]

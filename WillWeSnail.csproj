@@ -5,25 +5,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>WillWeSnail\</OutputPath>
+    <OutputPath>build/WillWeSnail/</OutputPath>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="UndertaleModLib, Culture=neutral, PublicKeyToken=null">
-      <HintPath>.\vendor\lib\UndertaleModLib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <ProjectReference Include="C:\Users\Ethan\Desktop\Repos\gmsl\gmsl-modapi\gmsl-modapi.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="gmlCode\" />
-  </ItemGroup>
-  <Target Name="DeleteCode" BeforeTargets="BeforeBuild">
-    <RemoveDir Directories="$(TargetDir)/gmlCode" />
-  </Target>
-  <Target Name="CopyCode" AfterTargets="AfterBuild">
-    <ItemGroup>
-      <Assets Include="gmlCode/**/*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(Assets)" DestinationFolder="$(TargetDir)/gmlCode/%(RecursiveDir)" SkipUnchangedFiles="false" />
-    <Copy SourceFiles="directories.json" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="false" />
+  
+  <!-- TODO: This isnt crossplatform -->
+  <Target Name="CreateSymbolicLink" AfterTargets="AfterBuild">
+    <Exec Command="mklink /J &quot;$(TargetDir)gmlCode&quot; &quot;$(ProjectDir)gmlCode&quot;" Condition="!Exists('$(TargetDir)gmlCode')" />
+    <Exec Command="mklink /H &quot;$(TargetDir)directories.json&quot; &quot;$(ProjectDir)directories.json&quot;" Condition="!Exists('$(TargetDir)directories.json')" />
   </Target>
 </Project>

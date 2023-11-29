@@ -4,20 +4,20 @@ using System.Text.RegularExpressions;
 using GMHooker;
 using UndertaleModLib;
 using UndertaleModLib.Models;
+using GMSL;
 
 namespace WillWeSnail;
 
-public class WillWeSnail
+public class WillWeSnail : IGMSLMod
 {
     private Dictionary<string, Action<string, string>> FileHandlers = new();
     private static string BaseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
     private static UndertaleData data;
     
-    public void Load(int audiogroup, UndertaleData d)
+    public void Load(UndertaleData d)
     {
         data = d;
-        if(audiogroup != 0) return;
-
+ 
         if (!File.Exists(Path.Combine(BaseDirectory, "directories.json")))
         {
             Console.WriteLine("Cant find directories.json inside the path " + BaseDirectory);
@@ -69,13 +69,13 @@ public class WillWeSnail
             else
                 argCount = 0;
 
-            data.CreateFunction(Path.GetFileNameWithoutExtension(file), code, argCount);
+            data.CreateLegacyScript(Path.GetFileNameWithoutExtension(file), code, argCount);
         };
         FileHandlers.Add("functions", loadFunction);
         
         Action<string, string> loadObjectCode = (code, file) =>
         {
-            if(!file.EndsWith(".json")){
+            if(!file.EndsWith(".json")) {
                 return;
             }
 
