@@ -1,4 +1,4 @@
-var packet = buffer_create(16, buffer_grow, 1);
+var packet = buffer_create(6, buffer_grow, 1);
 while (steam_net_packet_receive())
 {
     steam_net_packet_get_data(packet);
