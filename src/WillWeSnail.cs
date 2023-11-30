@@ -26,6 +26,8 @@ public class WillWeSnail : IGMSLMod
         SetupFileHandlers();
         AddObjects();
         LoadAllCode();
+
+        // TODO: Load plugins / mods to add custom packets
     }
 
     private void AddObjects()
@@ -54,6 +56,7 @@ public class WillWeSnail : IGMSLMod
     {
         foreach (var file in Directory.GetFiles(Path.Combine(BaseDirectory, directory.Key)))
         {
+            Console.WriteLine($"Loading: {Path.GetFileNameWithoutExtension(file)} with {directory.Value}");
             FileHandlers[directory.Value].Invoke(File.ReadAllText(file), file);
         }
     }
