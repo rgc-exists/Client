@@ -5,11 +5,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <OutputPath>build/WillWeSnail/</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Ethan\Desktop\Repos\gmsl\gmsl-modapi\gmsl-modapi.csproj" />
+    <ProjectReference Include="vendor\gmsl\gmsl-modapi\gmsl-modapi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Include all files except those in the "lib" folder -->
+    <Compile Include="src\**\*.cs" Exclude="vendor\**\*.cs" />
   </ItemGroup>
   
   <!-- TODO: This isnt crossplatform -->
