@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Include all files except those in the "lib" folder -->
     <Compile Include="src\**\*.cs" Exclude="vendor\**\*.cs" />
   </ItemGroup>
   
