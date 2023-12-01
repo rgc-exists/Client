@@ -32,13 +32,16 @@ public class WillWeSnail : IGMSLMod
 
     private void AddObjects()
     {
-        var name = new UndertaleString("obj_wws_manager");
         data.GameObjects.Add(new()
         {
-            Name = name,
+            Name = data.Strings.MakeString("obj_wws_manager"),
             Persistent = true
         });
-        data.Strings.Add(name);
+        data.GameObjects.Add(new()
+        {
+            Name = data.Strings.MakeString("obj_wws_player"),
+            Persistent = true
+        });
     }
 
     private void LoadAllCode()
