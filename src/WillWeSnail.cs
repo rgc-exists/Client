@@ -57,11 +57,10 @@ public class WillWeSnail : IGMSLMod
     
     private void LoadDirectory(KeyValuePair<string, string> directory)
     {
-        foreach (var file in Directory.GetFiles(Path.Combine(BaseDirectory, directory.Key)))
-        {
+        Parallel.ForEach(Directory.GetFiles(Path.Combine(BaseDirectory, directory.Key)), (file) => {
             Console.WriteLine($"Loading: {Path.GetFileNameWithoutExtension(file)} with {directory.Value}");
             FileHandlers[directory.Value].Invoke(File.ReadAllText(file), file);
-        }
+        });    
     }
 
     private void SetupFileHandlers()
