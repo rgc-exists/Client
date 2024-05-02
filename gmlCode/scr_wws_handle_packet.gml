@@ -5,7 +5,10 @@ var calculated_checksum = buffer_crc32(data, 6, buffer_get_size(data) - 6);
 
 // Silently discard packet, might log it to log idk
 if (calculated_checksum != checksum)
+{
+    show_debug_message("Packet checksum was not correct")
     return;
+}
 
 var packet = ds_map_find_value(global.wws_packets_by_id, pid);
 var args = [argument1]; // Prefill with socket id as arg0

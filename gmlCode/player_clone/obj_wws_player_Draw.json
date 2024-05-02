@@ -2,6 +2,6 @@
     "name": "obj_wws_player",
     "file": "obj_wws_player_Draw.gml",
     "type": "Draw",
-    "subtype": "DrawGUI",
+    "subtype": "Draw",
     "hasSubtype": true
 }

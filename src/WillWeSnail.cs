@@ -14,7 +14,7 @@ public class WillWeSnail : IGMSLMod
     private static string BaseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
     private static UndertaleData data;
     
-    public void Load(UndertaleData d)
+    public void Load(UndertaleData d, ModInfo modInfo)
     {
         data = d;
  
@@ -57,10 +57,10 @@ public class WillWeSnail : IGMSLMod
     
     private void LoadDirectory(KeyValuePair<string, string> directory)
     {
-        Parallel.ForEach(Directory.GetFiles(Path.Combine(BaseDirectory, directory.Key)), (file) => {
+        foreach (var file in Directory.GetFiles(Path.Combine(BaseDirectory, directory.Key))) {
             Console.WriteLine($"Loading: {Path.GetFileNameWithoutExtension(file)} with {directory.Value}");
             FileHandlers[directory.Value].Invoke(File.ReadAllText(file), file);
-        });    
+        }    
     }
 
     private void SetupFileHandlers()

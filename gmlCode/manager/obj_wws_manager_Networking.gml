@@ -6,7 +6,7 @@ switch (type)
     case network_type_connect:
         ds_list_add(global.wws_networking_ids, socket);
 
-        var player = instance_create_layer(-240, -240, "Player", obj_wws_player);
+        var player = instance_create_layer(240, 240, "Player", obj_wws_player);
         ds_map_add(global.wws_players_by_id, socket, player);
         break;
 
