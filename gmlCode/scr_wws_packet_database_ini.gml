@@ -102,6 +102,23 @@ packet = {
 }
 ds_map_add(global.wws_packet_database, packet.name, packet);
 
+packet = {
+    pid: 6,
+    name: "SyncObject",
+    types: [
+        buffer_u16, //Index of the object in the obj list
+        buffer_u8, //Object ID
+        buffer_f64, //XPos
+        buffer_f64, //YPos
+        buffer_f64, //XScale
+        buffer_f64, //YScale
+        buffer_f64, //Rotation
+        buffer_string //Extra data
+    ],
+    handler: asset_get_index("scr_wws_objSync_handler")
+}
+ds_map_add(global.wws_packet_database, packet.name, packet);
+
 // TODO: Add a hookable function for modders
 
 var key = ds_map_find_first(global.wws_packet_database);

@@ -3,6 +3,7 @@ if(global.wws_networking_is_server){
     
     if(global.wws_level_chunk_index >= global.wws_level_chunk_count){
         global.wws_is_sending_level = false;
+        global.wws_in_online_level = true;
         return false;
     }
     
@@ -13,6 +14,7 @@ if(global.wws_networking_is_server){
 
         var player = ds_map_find_value(global.wws_players_by_id, send_to);
         scr_wws_send_packet(data, send_to, true, false);
+        
     }
     buffer_delete(data)
     

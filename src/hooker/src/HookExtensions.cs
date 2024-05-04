@@ -1,8 +1,9 @@
 
+using GMHooker;
 using UndertaleModLib;
 using UndertaleModLib.Models;
 
-namespace GMHooker;
+namespace WillWeSnail;
 
 public static class HookExtensions {
     private static readonly Dictionary<string, UndertaleCode> originalCodes = new();
@@ -91,6 +92,10 @@ public static class HookExtensions {
                     AsmCursor cursor = new(data, origCode, locals);
                     while(cursor.GotoNext($"call.i {function}(argc={argCount})"))
                         cursor.Replace($"call.i {hookName}(argc={argCount})");
+                    cursor = new(data, origCode, locals);
+                    while(cursor.GotoNext($"push.i {function}"))
+                        cursor.Replace($"push.i {hookName}");
+                    cursor = new(data, origCode, locals);
                 }
             });
         });

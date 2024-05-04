@@ -26,6 +26,7 @@ public class WillWeSnail : IGMSLMod
         SetupFileHandlers();
         AddObjects();
         LoadAllCode();
+        data.FinalizeHooks();
 
         // TODO: Load plugins / mods to add custom packets
     }

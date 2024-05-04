@@ -2,7 +2,6 @@ var chunk = argument1;
 
 
 if(global.wws_is_recieving_level){
-    show_debug_message("Chunk:\n" + string(chunk) + "\n\n\n\n\n\n");
     global.wws_level_chunks_left--;
     if(global.wws_level_chunks_left <= 0){
         global.wws_is_recieving_level = false;

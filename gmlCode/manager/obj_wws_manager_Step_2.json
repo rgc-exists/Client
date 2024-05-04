@@ -1,0 +1,7 @@
+{
+    "name": "obj_wws_manager",
+    "file": "obj_wws_manager_Step_2.gml",
+    "type": "Step",
+    "subtype": "EndStep",
+    "hasSubtype": true
+}

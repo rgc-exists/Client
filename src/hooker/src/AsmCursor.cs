@@ -1,6 +1,7 @@
 using UndertaleModLib;
 using UndertaleModLib.Decompiler;
 using UndertaleModLib.Models;
+using WillWeSnail;
 
 namespace GMHooker;
 
