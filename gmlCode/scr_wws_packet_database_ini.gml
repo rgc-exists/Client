@@ -10,6 +10,10 @@
 global.wws_packet_database = ds_map_create();
 global.wws_packets_by_id = ds_map_create();
 
+global.wws_bullets_by_id = ds_map_create();
+
+global.wws_networking_ids = ds_list_create()
+
 global.wws_char_per_level_chunk = 1000;
 
 global.wws_time_sending_level = 0;
@@ -21,6 +25,15 @@ global.wws_in_online_level = false;
 global.wws_level_chunks_left = 0;
 global.wws_level_chunk_index = 0;
 
+global.wws_max_player_health = 40;
+
+global.wws_steam_lobby_id = undefined;
+
+global.wws_networking_is_server = false;
+global.wws_networking_is_steam = false;
+global.wws_networking_socket = -1;
+
+global.wws_networking_owner_id = 0;
 
 /*
 {
@@ -57,12 +70,14 @@ ds_map_add(global.wws_packet_database, packet.name, packet);
     x
     y
     lookdir
+    hp
+    dead
 }
 */
 packet = modhelper_create_struct();
 packet.pid = 2;
 packet.name = "PlayerMovement";
-packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8];
+packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8, buffer_s16, buffer_s16];
 packet.handler = asset_get_index("scr_wws_player_movement_handler");
 ds_map_add(global.wws_packet_database, packet.name, packet);
 
@@ -102,6 +117,7 @@ packet = {
 }
 ds_map_add(global.wws_packet_database, packet.name, packet);
 
+//THE SYNC OBJECT SYSTEM IS CURRENTLY NOT IN USE. INDIVIDUAL OBJECTS HAVE THEIR OWN PACKETS.
 packet = {
     pid: 6,
     name: "SyncObject",
@@ -116,6 +132,51 @@ packet = {
         buffer_string //Extra data
     ],
     handler: asset_get_index("scr_wws_objSync_handler")
+}
+ds_map_add(global.wws_packet_database, packet.name, packet);
+
+packet = {
+    pid: 7,
+    name: "DoorState",
+    types: [
+        buffer_u16, //Index of the object in the doors list
+        buffer_u16, //Open
+        buffer_u16, //image_yscale
+    ],
+    handler: asset_get_index("scr_wws_door_state_handler")
+}
+ds_map_add(global.wws_packet_database, packet.name, packet);
+
+packet = {
+    pid: 8,
+    name: "TakeHit",
+    types: [
+        buffer_u8 //Socket ID that took damage
+    ],
+    handler: asset_get_index("scr_wws_take_hit_handler")
+}
+ds_map_add(global.wws_packet_database, packet.name, packet);
+
+packet = {
+    pid: 9,
+    name: "ShootBullet",
+    types: [
+        buffer_string, //Bullet_ID
+        buffer_f64, //XPos
+        buffer_f64, //YPos
+        buffer_f64, //Rotation
+    ],
+    handler: asset_get_index("scr_wws_shoot_bullet_handler")
+}
+ds_map_add(global.wws_packet_database, packet.name, packet);
+
+packet = {
+    pid: 10,
+    name: "DestroyBullet",
+    types: [
+        buffer_string //Bullet_ID
+    ],
+    handler: asset_get_index("scr_wws_destroy_bullet_handler")
 }
 ds_map_add(global.wws_packet_database, packet.name, packet);
 

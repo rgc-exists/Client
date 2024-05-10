@@ -15,4 +15,6 @@ for (var i = 0; i < array_length(packet.types); i++)
 buffer_seek(packetdata, buffer_seek_start, 2);
 buffer_write(packetdata, buffer_u32, buffer_crc32(packetdata, 6, buffer_get_size(packetdata) - 6)); // Might need to offset this?
 
+show_debug_message("Created packet of name " + name);
+
 return packetdata;

@@ -27,3 +27,5 @@ if instance_exists(obj_levelstyler)
 }
 
 scr_move_like_a_snail_ini()
+hp = global.wws_max_player_health;
+dead = -1;

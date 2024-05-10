@@ -1,5 +1,5 @@
 
-
+/*
 if(global.wws_networking_is_server){
     if(global.wws_in_online_level){
         if(room == level_editor_play_mode){
@@ -32,3 +32,4 @@ if(global.wws_networking_is_server){
         }
     }
 }
+*/

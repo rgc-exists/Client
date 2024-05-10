@@ -9,9 +9,12 @@ global.wws_players_by_id = ds_map_create();
 
 if (steam)
 {
-    
+    steam_lobby_create(0, 10);
+    //global.wws_networking_owner_id = steam_lobby_get_owner_id();
+    global.wws_networking_owner_id = steam_get_user_steam_id();
 }
 else
 {
     global.wws_networking_socket = network_create_server_raw(network_socket_tcp, 25565, 32);
+    global.wws_networking_owner_id = 0;
 }

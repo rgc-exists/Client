@@ -12,12 +12,17 @@ global.wws_players_by_id = ds_map_create();
 
 if (steam)
 {
-    
+    global.wws_networking_socket = steam_get_user_steam_id();
+    global.wws_networking_owner_id = steam_lobby_get_owner_id();
+    //global.wws_networking_socket = steam_get_user_account_id()
+    var data = scr_wws_create_packet("PlayerJoin", [global.save_equipped_hat, room, name]);
+    scr_wws_send_packet(data, global.wws_networking_owner_id, true);
 }
 else
 {
     global.wws_networking_socket = network_create_socket(network_socket_tcp);
+    global.wws_networking_owner_id = 0;
     network_connect_raw(global.wws_networking_socket, destination, 25565);
     var data = scr_wws_create_packet("PlayerJoin", [global.save_equipped_hat, room, name]);
-    scr_wws_send_packet(data, 0, true);
+    scr_wws_send_packet(data, global.wws_networking_owner_id, true);
 }

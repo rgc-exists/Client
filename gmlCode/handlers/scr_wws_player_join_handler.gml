@@ -11,6 +11,7 @@ for (var i = 0; i < ds_list_size(global.wws_networking_ids); i++)
     if (send_to == socket_id) continue;
 
     var player = ds_map_find_value(global.wws_players_by_id, send_to);
+    player.name = name;
     var to_new = scr_wws_create_packet("PlayerJoinS2C", [send_to, -1, player.room_id, player.name]);
     scr_wws_send_packet(to_new, socket_id, true);
     scr_wws_send_packet(data, send_to, true, false);
@@ -18,5 +19,5 @@ for (var i = 0; i < ds_list_size(global.wws_networking_ids); i++)
 
 buffer_delete(data);
 
-to_new = scr_wws_create_packet("PlayerJoinS2C", [global.wws_networking_socket, global.save_equipped_hat, room, "host"]);
-scr_wws_send_packet(to_new, socket_id, true);
+to_new = scr_wws_create_packet("PlayerJoinS2C", [global.wws_networking_socket, global.save_equipped_hat, room, name]);
+scr_wws_send_packet(to_new, socket_id, true, true);

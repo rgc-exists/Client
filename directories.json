@@ -1,10 +1,9 @@
 {
     "gmlCode": "functions",
     "gmlCode/handlers": "functions",
-    "gmlCode/vanilla_functions": "functions",
     "gmlCode/manager": "object_code",
     "gmlCode/player_clone": "object_code",
+    "gmlCode/custom_objects": "object_code",
     "gmlCode/function_hooks": "function_hooks",
-    "gmlCode/code_hooks": "code_hooks",
-    "gmlCode/vanilla_objects": "code_hooks"
+    "gmlCode/code_hooks": "code_hooks"
 }

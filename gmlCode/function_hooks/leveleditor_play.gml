@@ -1,5 +1,7 @@
-if(global.wws_in_online_level && global.wws_networking_is_client){
-    saveName = get_campaigns_load_path_prefix() + "Community Levels/" + global.wws_temp_level_path + ".lvl";
+if(global.wws_in_online_level){
+    if(global.wws_networking_is_client){
+        saveName = get_campaigns_load_path_prefix() + "Community Levels/" + global.wws_temp_level_path + ".lvl";
+    }
 }
 
 if(!is_undefined(global.wws_objects_in_level)){
@@ -27,5 +29,4 @@ for(var k = 0; k < ds_map_size(global.wws_objSync_database); k++){
     key = ds_map_find_next(global.wws_objSync_database, key);
 }
 
-show_debug_message("The hook to leveleditor_play was run.");
 return #orig#();

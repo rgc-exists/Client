@@ -3,7 +3,7 @@ global.wws_networking_is_server = false;
 
 if (global.wws_networking_is_steam)
 {
-
+    steam_lobby_leave();
 } else {
    network_destroy(global.wws_networking_socket);
 }

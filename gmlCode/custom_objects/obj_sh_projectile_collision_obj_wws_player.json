@@ -1,0 +1,7 @@
+{
+    "name": "obj_sh_projectile",
+    "file": "obj_sh_projectile_collision_obj_wws_player.gml",
+    "type": "Collision",
+    "subtype": "obj_wws_player",
+    "hasSubtype": true
+}

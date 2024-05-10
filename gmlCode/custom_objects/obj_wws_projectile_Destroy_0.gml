@@ -1,0 +1,1 @@
+part_particles_create(global.part_sys_fx, (((x + hspeed) + 20) - random(40)), (((y + vspeed) + 20) - random(40)), global.part_type_shot_hit, 1)

@@ -1,3 +1,9 @@
+/*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+THE SYNC OBJECT SYSTEM IS CURRENTLY NOT IN USE. INDIVIDUAL OBJECTS HAVE THEIR OWN PACKETS.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+
 
 global.wws_objSync_database = ds_map_create();
 global.wws_objects_in_level = undefined;
