@@ -12,6 +12,7 @@ if (steam)
     steam_lobby_create(0, 10);
     //global.wws_networking_owner_id = steam_lobby_get_owner_id();
     global.wws_networking_owner_id = steam_get_user_steam_id();
+    global.wws_networking_socket = global.wws_networking_owner_id
 }
 else
 {

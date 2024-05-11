@@ -1,7 +1,7 @@
-var socket_id = argument1;
-var hat = argument2;
-var room_id = argument3;
-var name = argument4;
+var socket_id = argument0;
+var hat = argument1;
+var room_id = argument2;
+var name = argument3;
 
 var player = instance_create_layer(240, 240, "Player", obj_wws_player);
 player.room_id = room_id;

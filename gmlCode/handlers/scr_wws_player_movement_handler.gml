@@ -8,7 +8,10 @@ var dead = argument6;
 
 
 var player = ds_map_find_value(global.wws_players_by_id, socket_id);
-if(!instance_exists(player)) return false;
+if(!instance_exists(player)){
+    show_debug_message("Player doesn't exist: " + string(socket_id))
+    return false
+};
 player.room_id = room_id
 player.x = xpos;
 player.y = ypos;

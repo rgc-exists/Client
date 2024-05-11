@@ -1,7 +1,11 @@
 if(global.wws_networking_is_steam){
     ds_list_clear(global.wws_networking_ids);
     for(var m = 0; m < steam_lobby_get_member_count(); m++){
-        ds_list_add(global.wws_networking_ids, steam_lobby_get_member_id(m));
+        var pid = steam_lobby_get_member_id(m)
+        if(pid == global.wws_networking_socket)
+            continue
+        show_debug_message("Adding ID: " + string(pid))
+        ds_list_add(global.wws_networking_ids, pid);
     }
 }
 
@@ -70,6 +74,20 @@ if(global.wws_time_sending_level % 5 == 0){
 
 global.wws_time_sending_level++;
 
+
+if(global.wws_networking_is_steam){
+    var packet = buffer_create(12, buffer_grow, 1);
+    while (steam_net_packet_receive())
+    {
+        var size = steam_net_packet_get_size()
+        buffer_resize(packet, size)
+        steam_net_packet_get_data(packet);
+        buffer_seek(packet, buffer_seek_start, 0);
+        show_debug_message("Packet received, size: " + string(buffer_get_size(packet)))
+        scr_wws_handle_packet(packet, steam_net_packet_get_sender_id());
+    }
+    buffer_delete(packet);
+}
 
 
 
