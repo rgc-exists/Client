@@ -2,8 +2,8 @@ var data = argument0;
 var pid = buffer_read(data, buffer_u16);
 var checksum = buffer_read(data, buffer_u32);
 var calculated_checksum = buffer_crc32(data, 6, buffer_get_size(data) - 6);
-show_debug_message(checksum);
-show_debug_message(calculated_checksum);
+//show_debug_message(checksum);
+//show_debug_message(calculated_checksum);
 /*
 // Silently discard packet, might log it to log idk
 if (calculated_checksum != checksum)

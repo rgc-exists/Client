@@ -9,7 +9,6 @@ if (!is_undefined(argument3))
 if (global.wws_networking_is_steam)
 {
     steam_net_packet_send(sid, data);
-    show_debug_message("Sending buffer size: " + string(buffer_get_size(data)) + " To id " + string(sid));
 }
 else
 {
