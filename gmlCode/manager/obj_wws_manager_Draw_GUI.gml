@@ -2,12 +2,13 @@
 if(global.wws_in_online_level){
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
+    
+    var text_size = 0.5;
     scr_draw_text_in_box("USERNAME", 150, 30, text_size, -1, 0, 0, false);
     scr_draw_text_in_box("KILLS", 50, 30, text_size, -1, 200, 0, false);
     scr_draw_text_in_box("DEATHS", 50, 30, text_size, -1, 300, 0, false);
     
     var y_offset = 30;
-    var text_size = 0.5;
     
     var keys = ds_map_keys_to_array(global.wws_stats_others_leaderboard);
     
