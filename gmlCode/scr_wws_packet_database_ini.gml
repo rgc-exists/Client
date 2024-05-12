@@ -196,7 +196,7 @@ packet = {
     name: "PlayerKilled",
     types: [
     ],
-    handler: asset_get_index("scr_wws_take_kill_handler")
+    handler: asset_get_index("scr_wws_kill_handler")
 }
 ds_map_add(global.wws_packet_database, packet.name, packet);
 
