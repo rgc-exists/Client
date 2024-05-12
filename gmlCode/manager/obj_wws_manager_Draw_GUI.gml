@@ -4,6 +4,13 @@ if(global.wws_in_online_level){
     draw_set_valign(fa_top);
     
     var text_size = 0.5;
+    
+    draw_set_color(c_black);
+    draw_set_alpha(0.3);
+    draw_rectangle(0, 0, 400, 30, false);
+    
+    draw_set_alpha(1);
+    draw_set_color(c_white)
     scr_draw_text_in_box("USERNAME", 150, 30, text_size, -1, 0, 0, false);
     scr_draw_text_in_box("KILLS", 50, 30, text_size, -1, 200, 0, false);
     scr_draw_text_in_box("DEATHS", 50, 30, text_size, -1, 300, 0, false);
@@ -20,10 +27,13 @@ if(global.wws_in_online_level){
         draw_set_alpha(0.3);
         draw_rectangle(0, y_offset, 400, y_offset + 30, false);
         
+        draw_set_alpha(1);
+        draw_set_color(c_white)
         scr_draw_text_in_box(player_stats.name, 150, 30, text_size, -1, 0, y_offset, false);
         scr_draw_text_in_box(player_stats.kills, 50, 30, text_size, -1, 200, y_offset, false);
         scr_draw_text_in_box(player_stats.deaths, 50, 30, text_size, -1, 300, y_offset, false);
         
         y_offset += 30;
     }
+    draw_set_color(c_white)
 }
