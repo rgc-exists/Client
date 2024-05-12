@@ -9,6 +9,17 @@ if(global.wws_networking_is_steam){
     }
 }
 
+with obj_wws_player {
+    if(-1 == ds_list_find_index(global.wws_networking_ids, socket_id))
+    {
+        ds_map_delete(global.wws_players_by_id, socket_id)
+        instance_destroy()
+    }
+}
+
+if(steam_lobby_is_owner()){
+    global.wws_networking_is_server = true
+}
 
 // TODO: Move to a menu option maybe?
 if (keyboard_check_pressed(vk_ralt))
