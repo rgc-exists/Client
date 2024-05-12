@@ -13,3 +13,4 @@ ds_map_add(global.wws_stats_others_leaderboard, socket_id, {
     deaths: 0,
     kills: 0
 })
+
