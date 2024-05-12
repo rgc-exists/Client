@@ -40,6 +40,7 @@ global.wws_stats_deaths = 0;
 
 global.wws_stats_others_leaderboard = ds_map_create();
 
+global.wws_hits_built_up = []
             
 /*
 {
@@ -80,12 +81,13 @@ ds_map_add(global.wws_packet_database, packet.name, packet);
     dead
     kills
     deaths
+    in_online_level
 }
 */
 packet = modhelper_create_struct();
 packet.pid = 2;
 packet.name = "PlayerMovement";
-packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8, buffer_s16, buffer_s16, buffer_u32, buffer_u32];
+packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8, buffer_s16, buffer_s16, buffer_u32, buffer_u32, buffer_bool];
 packet.handler = asset_get_index("scr_wws_player_movement_handler");
 ds_map_add(global.wws_packet_database, packet.name, packet);
 

@@ -7,7 +7,7 @@ var hp = argument5;
 var dead = argument6;
 var kills = argument7;
 var deaths = argument8;
-
+var in_online_level = argument9;
 
 var player = ds_map_find_value(global.wws_players_by_id, socket_id);
 if(!instance_exists(player)){
@@ -20,6 +20,7 @@ player.y = ypos;
 player.lookdir = lookdir
 player.hp = hp;
 player.dead = dead;
+player.in_online_level = in_online_level;
 
 var player_info = ds_map_find_value(global.wws_stats_others_leaderboard, socket_id);
 if(is_undefined(player_info) || player_info == -1){

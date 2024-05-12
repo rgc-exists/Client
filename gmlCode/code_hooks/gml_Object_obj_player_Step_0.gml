@@ -7,6 +7,12 @@ if(global.wws_in_online_level){
     	hp = global.wws_max_player_health;
 		global.wws_stats_deaths += 1;
     }
+    if(array_length(global.wws_hits_built_up) > 0){
+    	for(var i = 0; i < array_length(global.wws_hits_built_up); i++){
+    		scr_wws_take_hit_handler(global.wws_hits_built_up[i], global.wws_networking_socket);
+    	}
+	    global.wws_hits_built_up = []
+    }
 }
 
 

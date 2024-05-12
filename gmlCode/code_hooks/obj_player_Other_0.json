@@ -1,0 +1,7 @@
+{
+    "name": "obj_player",
+    "file": "obj_player_Other_0.gml",
+    "type": "Other",
+    "subtype": "OutsideRoom",
+    "hasSubtype": true
+}

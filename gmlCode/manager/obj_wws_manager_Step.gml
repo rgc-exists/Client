@@ -20,6 +20,11 @@ if(steam_lobby_is_owner()){
     global.wws_networking_is_server = true
 }
 
+if(room != level_editor_play_mode && room != menu){
+    global.wws_in_online_level = false;
+}
+
+
 // TODO: Move to a menu option maybe?
 if (keyboard_check_pressed(vk_ralt))
 {
@@ -60,7 +65,7 @@ if(global.wws_networking_socket != -1){
             global.wws_stats_kills = 0;
             global.wws_stats_deaths = 0;
         }
-        var data = scr_wws_create_packet("PlayerMovement", [room, x, y, lookdir, hp, dead, global.wws_stats_kills, global.wws_stats_deaths]);
+        var data = scr_wws_create_packet("PlayerMovement", [room, x, y, lookdir, hp, dead, global.wws_stats_kills, global.wws_stats_deaths, global.wws_in_online_level]);
         if(global.wws_networking_is_server){
             for (var i = 0; i < ds_list_size(global.wws_networking_ids); i++)
             {
