@@ -135,6 +135,9 @@ if (global.input_reset && allow_restarts)
                         global.last_death_by_image_anlge = 0
                         scr_player_death((obj_player.direction + 180), 0)
                         global.save_speedrun_timer_level = 0
+                        
+                    	hp = global.wws_max_player_health;
+						global.wws_stats_deaths += 1;
                     }
                 }
             }
