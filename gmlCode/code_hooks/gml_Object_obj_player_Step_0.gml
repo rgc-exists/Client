@@ -3,6 +3,10 @@ if(global.wws_in_online_level){
     if(!instance_exists(obj_wws_aim_target)){
         instance_create_layer(-60, -60, "Spots", obj_wws_aim_target);
     }
+    if(dead == 0){
+    	hp = global.wws_max_player_health;
+		global.wws_stats_deaths += 1;
+    }
 }
 
 
