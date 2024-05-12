@@ -2,7 +2,7 @@
 if(global.wws_in_online_level){
     
     
-    ds_map_add(global.wws_stats_others_leaderboard, global.wws_networking_socket, {
+    ds_map_set(global.wws_stats_others_leaderboard, global.wws_networking_socket, {
         name: steam_get_persona_name(),
         deaths: global.wws_stats_deaths,
         kills: global.wws_stats_kills
@@ -40,6 +40,10 @@ if(global.wws_in_online_level){
         
         draw_set_alpha(1);
         draw_set_color(c_white)
+        show_debug_message(player_stats.name)
+        show_debug_message(player_stats.kills)
+        show_debug_message(player_stats.deaths)
+        show_debug_message(socket)
         scr_draw_text_in_box(player_stats.name, 150, 30, text_size, -1, 0, y_offset, false);
         scr_draw_text_in_box(string(player_stats.kills), 50, 30, text_size, -1, 200, y_offset, false);
         scr_draw_text_in_box(string(player_stats.deaths), 50, 30, text_size, -1, 300, y_offset, false);

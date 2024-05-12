@@ -4,7 +4,6 @@ if(global.wws_networking_is_steam){
         var pid = steam_lobby_get_member_id(m)
         if(pid == global.wws_networking_socket)
             continue
-        show_debug_message("Adding ID: " + string(pid))
         ds_list_add(global.wws_networking_ids, pid);
     }
 }
@@ -29,7 +28,7 @@ if (keyboard_check_pressed(vk_ralt))
     if (show_question("Host?"))
     {
         if(steam){
-            scr_wws_create_server(steam_get_persona_name(), steam);    
+            scr_wws_create_server(steam_get_persona_name(), steam);
         } else {
             var name = get_string("Name", "Player");
             scr_wws_create_server(name, steam);    
