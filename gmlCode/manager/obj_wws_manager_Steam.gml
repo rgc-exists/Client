@@ -11,6 +11,6 @@ switch (steam_event_type){
     break;
     case "lobby_joined":
         show_debug_message("Lobby joined!");
-        scr_wws_join_server(-1, "Test", true);
+        scr_wws_join_server(-1, steam_get_persona_name(), true);
     break;
 }

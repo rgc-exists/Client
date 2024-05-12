@@ -9,9 +9,9 @@ if(variable_instance_exists(id, "bullet_id")){
             scr_wws_send_packet(data, send_to, true, false);
             
         }
+        buffer_delete(data)
     } else {
         scr_wws_send_packet(data, global.wws_networking_owner_id, true);
     }
-    buffer_delete(data)
 }
 #orig#()

@@ -35,6 +35,12 @@ global.wws_networking_socket = -1;
 
 global.wws_networking_owner_id = 0;
 
+global.wws_stats_kills = 0;
+global.wws_stats_deaths = 0;
+
+global.wws_stats_others_leaderboard = ds_map_create();
+
+            
 /*
 {
     hat
@@ -72,15 +78,19 @@ ds_map_add(global.wws_packet_database, packet.name, packet);
     lookdir
     hp
     dead
+    kills
+    deaths
 }
 */
 packet = modhelper_create_struct();
 packet.pid = 2;
 packet.name = "PlayerMovement";
-packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8, buffer_s16, buffer_s16];
+packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8, buffer_s16, buffer_s16, buffer_u16, buffer_u16];
 packet.handler = asset_get_index("scr_wws_player_movement_handler");
 ds_map_add(global.wws_packet_database, packet.name, packet);
 
+
+//PLAYERMOVEMENTS2C IS UNUSED
 /*
 {
     socket_id
@@ -96,6 +106,7 @@ packet.name = "PlayerMovementS2C";
 packet.types = [buffer_u16, buffer_u16, buffer_f32, buffer_f32, buffer_s8];
 packet.handler = asset_get_index("scr_wws_player_join_handler_client");
 ds_map_add(global.wws_packet_database, packet.name, packet);
+//PLAYERMOVEMENTS2C IS UNUSED
 
 packet = {
     pid: 4,
@@ -151,7 +162,7 @@ packet = {
     pid: 8,
     name: "TakeHit",
     types: [
-        buffer_u8 //Socket ID that took damage
+        buffer_u64 //Socket ID that took damage
     ],
     handler: asset_get_index("scr_wws_take_hit_handler")
 }
@@ -177,6 +188,15 @@ packet = {
         buffer_string //Bullet_ID
     ],
     handler: asset_get_index("scr_wws_destroy_bullet_handler")
+}
+ds_map_add(global.wws_packet_database, packet.name, packet);
+
+packet = {
+    pid: 11,
+    name: "PlayerKilled",
+    types: [
+    ],
+    handler: asset_get_index("scr_wws_take_kill_handler")
 }
 ds_map_add(global.wws_packet_database, packet.name, packet);
 

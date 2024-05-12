@@ -8,3 +8,8 @@ player.room_id = room_id;
 player.name = name;
 player.socket_id = socket_id;
 ds_map_add(global.wws_players_by_id, socket_id, player);
+ds_map_add(global.wws_stats_others_leaderboard, socket_id, {
+    name: name,
+    deaths: 0,
+    kills: 0
+})

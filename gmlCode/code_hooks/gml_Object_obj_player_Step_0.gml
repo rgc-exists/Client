@@ -5,9 +5,6 @@ if(global.wws_in_online_level){
     }
 }
 
-if(hp < 0){
-	scr_player_death(other.image_angle, obj_sh_projectile)
-}
 
 if(global.wws_in_online_level){
     gun_equipped = 6
@@ -333,10 +330,14 @@ if ((gun_equipped > 0))
     {
         if ((dead == -1))
         {
-            if instance_exists(obj_in_community_level)
-                gun_cooldown = (5 * obj_in_community_level.gun_cooldown)
-            else
-                gun_cooldown = 5
+        	if(global.wws_in_online_level){
+        		gun_cooldown = 1;
+        	} else {
+	            if instance_exists(obj_in_community_level)
+	                gun_cooldown = (5 * obj_in_community_level.gun_cooldown)
+	            else
+	                gun_cooldown = 5
+        	}
             if ((gun_equipped == 1))
             {
                 idmerk = instance_create_layer((x - (lookdir * 13)), (y - 10), "Player", obj_sh_projectile)
@@ -387,7 +388,7 @@ if ((gun_equipped > 0))
                         idmerk = instance_create_layer((x - (lookdir * 13)), (y - 10), "Player", obj_sh_projectile)
                         idmerk.direction = point_direction(x, y, obj_wws_aim_target.x, obj_wws_aim_target.y)
                         idmerk.image_angle = idmerk.direction
-                        idmerk.speed = 20
+                        idmerk.speed = 10
                         idmerk.image_xscale = 0.2
                         idmerk.image_yscale = 0.2
                         idmerk.bullet_id = scr_createcampaignname(7)
@@ -402,7 +403,7 @@ if ((gun_equipped > 0))
 						        
 						    }
 					    } else {
-					    	scr_wws_send_packet(data, wws_networking_owner_id, true);
+					    	scr_wws_send_packet(data, global.wws_networking_owner_id, true, false);
 					    }
 				    	buffer_delete(data)
                     }

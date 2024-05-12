@@ -14,14 +14,19 @@ if(global.wws_networking_is_steam){
 if (keyboard_check_pressed(vk_ralt))
 {
     var steam = show_question("Steam?");
-    var name = get_string("Name", "Player");
 
     if (show_question("Host?"))
     {
-        scr_wws_create_server(name, steam);    
+        if(steam){
+            scr_wws_create_server(steam_get_persona_name(), steam);    
+        } else {
+            var name = get_string("Name", "Player");
+            scr_wws_create_server(name, steam);    
+        }
     }
     else
     {
+        var name = get_string("Name", "Player");
         if (steam)
         {
             show_message("You cant join while using steam accept an invite instead!");
@@ -41,7 +46,11 @@ if(keyboard_check_pressed(vk_f6) && global.wws_networking_is_steam){
 if(global.wws_networking_socket != -1){
     with (obj_player)
     {
-        var data = scr_wws_create_packet("PlayerMovement", [room, x, y, lookdir, hp, dead]);
+        if(!global.wws_in_online_level){
+            global.wws_stats_kills = -1;
+            global.wws_stats_deaths = -1;
+        }
+        var data = scr_wws_create_packet("PlayerMovement", [room, x, y, lookdir, hp, dead, global.wws_stats_kills, global.wws_stats_deaths]);
         if(global.wws_networking_is_server){
             for (var i = 0; i < ds_list_size(global.wws_networking_ids); i++)
             {
