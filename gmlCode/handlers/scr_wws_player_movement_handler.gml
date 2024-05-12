@@ -28,4 +28,4 @@ if(is_undefined(player_info) || player_info == -1){
 
 player_info.kills = kills;
 player_info.deaths = deaths;
-ds_map_add(global.wws_stats_others_leaderboard, socket_id, player_info);
+ds_map_set(global.wws_stats_others_leaderboard, socket_id, player_info);
