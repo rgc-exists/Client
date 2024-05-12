@@ -19,6 +19,6 @@ for (var i = 0; i < ds_list_size(global.wws_networking_ids); i++)
 
 buffer_delete(data);
 
-to_new = scr_wws_create_packet("PlayerJoinS2C", [global.wws_networking_socket, global.save_equipped_hat, room, name]);
+to_new = scr_wws_create_packet("PlayerJoinS2C", [global.wws_networking_socket, global.save_equipped_hat, room, steam_get_persona_name()]);
 scr_wws_send_packet(to_new, socket_id, true, true);
 scr_wws_player_join_handler_client(socket_id, hat, room_id, name);
