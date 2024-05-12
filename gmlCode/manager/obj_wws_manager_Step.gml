@@ -47,8 +47,8 @@ if(global.wws_networking_socket != -1){
     with (obj_player)
     {
         if(!global.wws_in_online_level){
-            global.wws_stats_kills = -1;
-            global.wws_stats_deaths = -1;
+            global.wws_stats_kills = 0;
+            global.wws_stats_deaths = 0;
         }
         var data = scr_wws_create_packet("PlayerMovement", [room, x, y, lookdir, hp, dead, global.wws_stats_kills, global.wws_stats_deaths]);
         if(global.wws_networking_is_server){
