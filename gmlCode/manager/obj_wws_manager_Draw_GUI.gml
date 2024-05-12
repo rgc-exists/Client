@@ -41,8 +41,8 @@ if(global.wws_in_online_level){
         draw_set_alpha(1);
         draw_set_color(c_white)
         scr_draw_text_in_box(player_stats.name, 150, 30, text_size, -1, 0, y_offset, false);
-        scr_draw_text_in_box(player_stats.kills, 50, 30, text_size, -1, 200, y_offset, false);
-        scr_draw_text_in_box(player_stats.deaths, 50, 30, text_size, -1, 300, y_offset, false);
+        scr_draw_text_in_box(string(player_stats.kills), 50, 30, text_size, -1, 200, y_offset, false);
+        scr_draw_text_in_box(string(player_stats.deaths), 50, 30, text_size, -1, 300, y_offset, false);
         
         y_offset += 30;
     }

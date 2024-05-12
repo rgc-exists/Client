@@ -85,7 +85,7 @@ ds_map_add(global.wws_packet_database, packet.name, packet);
 packet = modhelper_create_struct();
 packet.pid = 2;
 packet.name = "PlayerMovement";
-packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8, buffer_s16, buffer_s16, buffer_u16, buffer_u16];
+packet.types = [buffer_u16, buffer_f32, buffer_f32, buffer_s8, buffer_s16, buffer_s16, buffer_u32, buffer_u32];
 packet.handler = asset_get_index("scr_wws_player_movement_handler");
 ds_map_add(global.wws_packet_database, packet.name, packet);
 
