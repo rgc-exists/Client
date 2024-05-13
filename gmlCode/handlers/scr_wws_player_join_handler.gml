@@ -11,7 +11,6 @@ for (var i = 0; i < ds_list_size(global.wws_networking_ids); i++)
     if (send_to == socket_id) continue;
     show_debug_message("Send to " + string(send_to))
     var player = ds_map_find_value(global.wws_players_by_id, send_to);
-    player.name = name;
     var to_new = scr_wws_create_packet("PlayerJoinS2C", [send_to, -1, player.room_id, player.name]);
     scr_wws_send_packet(to_new, socket_id, true);
     scr_wws_send_packet(data, send_to, true, false);
