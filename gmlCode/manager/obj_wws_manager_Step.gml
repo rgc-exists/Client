@@ -107,7 +107,6 @@ if(global.wws_networking_is_steam){
         buffer_resize(packet, size)
         steam_net_packet_get_data(packet);
         buffer_seek(packet, buffer_seek_start, 0);
-        show_debug_message("Packet received, size: " + string(buffer_get_size(packet)))
         scr_wws_handle_packet(packet, steam_net_packet_get_sender_id());
     }
     buffer_delete(packet);
