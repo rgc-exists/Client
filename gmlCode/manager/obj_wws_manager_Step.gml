@@ -113,5 +113,59 @@ if(global.wws_networking_is_steam){
     buffer_delete(packet);
 }
 
+if(array_length(messages) > chatHistoryLength){
+    array_delete(messages, 0, array_length(messages) - chatHistoryLength)
+}
 
+if(in_chat)
+{
+    if(keyboard_check_pressed(vk_escape)) {
+        currentMessage = ""
+        in_chat = false
+    }
+    if(keyboard_check_pressed(vk_enter)) {
+        in_chat = false
+        // TODO: Send message
+        currentMessage = string_trim(currentMessage)
+        if(string_length(currentMessage) != 0)
+            steam_lobby_send_chat_message(currentMessage)
+        currentMessage = ""
+    }
+}
+if(in_chat) {
+    // This is done twice so it can be exited before updating the message, without returning bc the event might need to do more later
+    // Here, we (try) to update currentMessage with whatever has been typed. I'm sure this will go great...
+    
+    
+    with (obj_player) {
+        if(lockmovement < 1)
+            lockmovement = 1
+        lockmovement += 1
+    }
+    
+    global.inputaction_pause_menu.MakeInvalidTillReleased()
+    
+    var char = keyboard_lastchar
+    
+    if(ord(char) = 8)
+    {
+        if(string_length(currentMessage) > 0)
+        {
+            currentMessage = string_delete(currentMessage, string_length(currentMessage), 1)
+        }
+    }
+    else {
+        if(char != "")
+        {
+            if(!(string_length(currentMessage) >= maxchatlength))
+                currentMessage += char
+        }
+    }
+    keyboard_lastchar = ""
+} else {
+    if(keyboard_lastchar = "/") {
+        in_chat = true;
+        keyboard_lastchar = ""
+    }
+}
 

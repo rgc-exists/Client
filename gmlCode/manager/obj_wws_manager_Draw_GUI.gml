@@ -55,3 +55,61 @@ if(global.wws_in_online_level){
     
 }
 
+var reversed_messages = array_reverse(messages)
+
+if(in_chat){
+    draw_set_color(c_black)
+    draw_set_alpha(0.6)
+    draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false)
+    draw_set_color(c_white)
+    draw_set_alpha(1)
+    
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_bottom);
+    draw_text(5, display_get_gui_height() - 25, ">" + currentMessage)
+    
+    scale = maxchatlength/(maxchatlength + 34)
+    perMsgOffset = 50
+    offset = 25 + perMsgOffset
+    for(var i = 0; i < array_length(reversed_messages); i++)
+    {
+        var content = reversed_messages[i].content
+        var sender = reversed_messages[i].sender
+        draw_text_transformed(5, display_get_gui_height() - offset, sender + ": " + content, scale, scale, 0)
+        offset += perMsgOffset*scale
+    }
+}
+else {
+    // draw messages with fade
+    if(array_length(messages) == 0)
+        return
+    draw_set_color(c_white)
+    draw_set_alpha(1)
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_bottom);
+    scale = maxchatlength/(maxchatlength + 34)
+    perMsgOffset = 50
+    offset = 25
+    var old = reversed_messages[0].age > 15
+    if(reversed_messages[0].age >= 10)
+        return;
+    for(var i = 0; i < (array_length(reversed_messages) < chatDisplayCount ? array_length(reversed_messages) : chatDisplayCount); i++)
+    {
+        var content = reversed_messages[i].content
+        var sender = reversed_messages[i].sender
+        draw_set_alpha(clamp(1.25-((i/15)), .2, 1))
+        if(old)
+        {
+            draw_set_alpha(draw_get_alpha()*(1-((reversed_messages[0].age-10)/5)))
+        }
+        draw_text_transformed(5, display_get_gui_height() - offset, sender + ": " + content, scale, scale, 0)
+        offset += perMsgOffset*scale
+    }
+}
+
+for(var i = 0; i < array_length(messages); i++)
+{
+    if(messages[i].age <= 15)
+    messages[i].age += 1/60
+}
+
